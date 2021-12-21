@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<head>
+    <title>研究室サンプル生徒側</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+    <script src="https://cdn.webrtc.ecl.ntt.com/screenshare-latest.js"></script>
+    <script type="text/javascript" src="datachat.js"></script>
+    
+</head>
+
+<body>
+<div id="step2">
+            
+            <h3>Call</h3>
+            <div class="pure-form">
+                <label for="otherpeerid">My peer id:</label>
+                <input id="otherpeerid">
+                <a href="#" class="pure-button pure-button-success" id="make-call">Call</a>
+            </div>
+        </div>
+
+<?php
+    if(isset($_POST['add'])){
+        file_put_contents("color.txt", "HELLO WORLD2", FILE_APPEND);
+    }else if(isset($_POST['add2'])){
+        file_put_contents("color.txt", "HELLO WORLD3", FILE_APPEND);
+    }
+?>
+<?php
+    $textfile = fopen("color.txt", "a");//「text.txt」をオープン
+    ftruncate($textfile,0);
+	fputs($textfile, $_POST["date"]);//書き込む（これができません。ディレクトリーにファイルがなかった場合、ファイルは作成されます）
+	fclose($textfile);
+?>
+
+
+<div class="pure-g">
+    
+    <!-- Video area -->
+    <div class="pure-u-2-3" id="video-container">
+        <p>研究室サンプル生徒側</p>
+        <video id="their-video" muted="true" width="1200" height="600"autoplay></video>
+        <br>
+
+    </div>
+
+        <script src="https://embed.small.chat/T02GULFTXE3C02H6CA38UV.js" async></script>
+
+    <!-- Steps -->
+    <div class="pure-u-1-3" id="control">
+
+  
+
+
+        <!-- Get local audio/video stream -->
+
+
+        <!-- Make calls to others -->
+
+
+        <!-- Call in progress -->
+
+    </div>
+    
+
+<script type="text/javascript" src="app.js"></script>
+</div>
+
+<script language="Javascript">
+	function send(){//
+	$.ajax({
+		type: "POST",
+        url: "index2.php",//write.phpに送信
+        //「id="text"」なテキストエリアのvalue値を取得し「date」として送信。
+        data:{date:$("#text").val()}
+    });
+	}	
+</script>
+</body>
+</html>
